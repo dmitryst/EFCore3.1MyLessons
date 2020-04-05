@@ -17,13 +17,14 @@ namespace ScalarFunctionConsoleApp
             var provider = services.BuildServiceProvider();
             var ps = provider.GetRequiredService<IPersonService>();
 
-            var persons = await ps.GetAsync();
+            var persons = await ps.GetAsync(nameStartsWith: "M", isSpecial: true);
 
             foreach (var p in persons)
             {
                 Console.WriteLine(p.ToString());
             }
 
+            Console.WriteLine("Completed");
             Console.ReadLine();
         }
     }
