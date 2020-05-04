@@ -1,4 +1,5 @@
-﻿using Infrastructure.Database;
+﻿using Domain;
+using Infrastructure.Database;
 using Microsoft.Extensions.DependencyInjection;
 using ScalarFunctionConsoleApp.Services;
 using System;
@@ -17,7 +18,7 @@ namespace ScalarFunctionConsoleApp
             var provider = services.BuildServiceProvider();
             var ps = provider.GetRequiredService<IPersonService>();
 
-            var persons = await ps.GetAsync(nameStartsWith: "M", isSpecial: true);
+            var persons = ps.Search<Person>("Ken");
 
             foreach (var p in persons)
             {
